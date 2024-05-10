@@ -1,9 +1,12 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
+import React from 'react'
 
 export default function Country(){
     const [country, setCountry]=useState([]);
+    const [filteredCountry, setFilteredCountry]=useState(country);
+    const[searchField,setSearchField]=useState('');
 
     useEffect(()=>{
       axios.get('https://restcountries.com/v3.1/all')
@@ -15,6 +18,19 @@ export default function Country(){
   
       })
     },[])
+
+    const onSearchChange=(event)=>{
+ 
+        const searchFieldString=event.target.value.toLocaleLowerCase();
+        setSearchField(searchFieldString);
+        }
+
+        useEffect(()=>{
+            const newfilterdCountry=country.filter((country)=>{
+              return country.name.common.toLocaleLowerCase().includes(searchField);
+        })
+              setFilteredCountry(newfilterdCountry)
+           },[country,searchField])
 
     const Card = ({flagUrl, name})=>{
         return (
@@ -50,7 +66,9 @@ export default function Country(){
             alignItems:"center",
             margin:"15px"
          }}>
-            <TextField label="Search for Countries"/>
+            <TextField 
+            onChange={onSearchChange} 
+            label="Search for Countries"/>
     </div>
     <div style={{
         display:"flex",
@@ -62,7 +80,7 @@ export default function Country(){
     }}>
    
     
-{country.map((country)=><Card key={country.name.common} flagUrl={country.flags.png} name={country.name.common}/>
+{filteredCountry.map((country)=><Card key={country.name.common} flagUrl={country.flags.png} name={country.name.common}/>
 
 )}
 
