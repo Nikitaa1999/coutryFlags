@@ -61,18 +61,20 @@ export default function Country(){
     return (
     
         <>
-        <div>
-            
-        </div>
+       
          <div style={{
             display:"flex",
             justifyContent:"center",
             alignItems:"center",
             margin:"15px"
          }}>
-            <TextField 
+            {/* <TextField 
             onChange={onSearchChange} 
-            label="Search for Countries"/>
+            label="Search for Countries"/> */}
+            <input type="text"
+        onInput={onSearchChange} 
+            name="Search for Countries" 
+            />
     </div>
     <div style={{
         display:"flex",
