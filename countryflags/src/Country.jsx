@@ -9,6 +9,7 @@ export default function Country(){
     const[searchField,setSearchField]=useState('');
 
     useEffect(()=>{
+        try{
       axios.get('https://restcountries.com/v3.1/all')
       .then((data)=>{
         
@@ -16,7 +17,10 @@ export default function Country(){
         setCountry(data.data);
         // console.log(country[0].flags)
   
-      })
+      })}
+      catch(err){
+        console.log(err);
+      }
     },[])
 
     const onSearchChange=(event)=>{
@@ -45,7 +49,7 @@ export default function Country(){
                 borderRadius:"10px",
                 flexDirection:"column",
                 width:"200px",
-                height:"250px"
+                 height:"200px"
             }}>
             <img src={flagUrl} alt={name} style={{width:"100px", height:"100px"}}/>
             <h2>{name}</h2>
