@@ -74,6 +74,7 @@ export default function Country(){
             <input type="text"
         onInput={onSearchChange} 
             name="Search for Countries" 
+            placeholder="Search for Countries"
             />
     </div>
     <div style={{
