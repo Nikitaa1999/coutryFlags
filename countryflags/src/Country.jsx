@@ -8,20 +8,33 @@ export default function Country(){
     const [filteredCountry, setFilteredCountry]=useState(country);
     const[searchField,setSearchField]=useState('');
 
-    useEffect(()=>{
-        try{
-      axios.get('https://restcountries.com/v3.1/all')
-      .then((data)=>{
+    // useEffect(()=>{
+    //     try{
+    //   axios.get('https://restcountries.com/v3.1/all')
+    //   .then((data)=>{
         
-        // console.log(data.data[0].flags);
-        setCountry(data.data);
-        // console.log(country[0].flags)
+    //     // console.log(data.data[0].flags);
+    //     setCountry(data.data);
+    //     // console.log(country[0].flags)
   
-      })}
-      catch(err){
-        console.log(err);
-      }
-    },[])
+    //   })}
+    //   catch(error){
+    //     console.error();
+    //   }
+    // },[])
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const resp = await fetch("https://restcountries.com/v3.1/all");
+            const data = await resp.json();
+            setCountry(data);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      }, []);
 
     const onSearchChange=(event)=>{
  
