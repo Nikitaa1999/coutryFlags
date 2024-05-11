@@ -65,7 +65,7 @@ export default function Country(){
                  height:"200px"
             }}>
             <img src={flagUrl} alt={name} style={{width:"100px", height:"100px"}}/>
-            <h2>{name}</h2>
+            <p>{name}</p>
         
             </div>
         )
@@ -75,22 +75,22 @@ export default function Country(){
     
         <>
        
-         {/* <div style={{
+         <div style={{
             display:"flex",
             justifyContent:"center",
             alignItems:"center",
             margin:"15px"
          }}>
-             <TextField 
+             {/* <TextField 
             onChange={onSearchChange} 
-            label="Search for Countries"/> 
+            label="Search for Countries"/>  */}
             <input type="text"
         onInput={onSearchChange} 
             name="Search for Countries" 
             placeholder="Search for Countries"
             margin="15px"
             />
-    </div> */}
+    </div>
     
     <div style={{
         display:"flex",
