@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import React from 'react'
+import "./Country.css"
 
 export default function Country(){
     const [country, setCountry]=useState([]);
@@ -51,36 +52,18 @@ export default function Country(){
 
     const Card = ({flagUrl, name})=>{
         return (
-            <div style={{
-                display:"flex",
-                justifyContent:"center",
-                alignItems:"center",
-                height:"100vh",
-                margin:"10px",
-                padding:"10px",
-                border: "1px solid black",
-                borderRadius:"10px",
-                flexDirection:"column",
-                width:"200px",
-                 height:"200px"
-            }}>
-            <img src={flagUrl} alt={name} style={{width:"100px", height:"100px"}}/>
+            <div className="countryCard">
+            <img src={flagUrl} alt={name}></img>
             <p>{name}</p>
-        
-            </div>
+          </div>
         )
     }
 
     return (
     
-        <>
+        <div>
        
-         <div style={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            margin:"15px"
-         }}>
+         <div className='inp'>
              {/* <TextField 
             onChange={onSearchChange} 
             label="Search for Countries"/>  */}
@@ -90,8 +73,16 @@ export default function Country(){
             placeholder="Search for Countries"
             margin="15px"
             />
-    </div>
-    
+        </div>
+
+        <div className='App'>
+
+        {filteredCountry.map((country)=><Card key={country.name.common} flagUrl={country.flags.png} name={country.name.common}/>
+    )}
+        </div>
+
+
+{/*     
     <div style={{
         display:"flex",
         justifyContent:"center",
@@ -107,6 +98,6 @@ export default function Country(){
 )}
 
 
-    </div>
-    </>)
+    </div> */}
+    </div>)
 }
